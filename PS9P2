@@ -1,0 +1,34 @@
+#PS9P2
+#Alexander Kazantzis
+# 2-27-26
+def SqrFoot(Length,Width,Height):
+    FlrClg = 2*(Length * Width)
+    Awalls = 2*(Length * Height)
+    BWalls = 2*(Width * Height)
+    return FlrClg + Awalls + BWalls
+def main():
+    while True:
+        #start sequence
+        FstQst = input("Do you want to use the program? (Yes or No): ")
+        
+        FstQst = FstQst.lower()
+        
+        if FstQst == "yes":
+           
+            #input
+            Length = float(input("Enter Room Length: "))
+            Width = float(input("Enter Room Width: "))
+            Height = float(input("Enter Room Height : "))
+            #Process
+            
+            Gallons = SqrFoot(Length,Width,Height)/50
+            #output
+            print("Square foot of the room", SqrFoot(Length,Width,Height))
+            print("Gallons needed to paint the room: ", Gallons)
+        elif FstQst == "no":
+            print("understood, have a nice day!")
+            break
+        else:
+            print ("Invalid Input, enter yes or no")
+if __name__ == "__main__":
+    main()    
