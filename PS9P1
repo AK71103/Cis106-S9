@@ -1,40 +1,47 @@
 #PS9P1
 #Alexander Kazantzis
-# 2-26-26
-
-def NMthSales(Mth,CSales):
-    Mth = Mth.capitalize()[:3]
-    if Mth in [Jan,Feb,Mar]:
-        FrcPct = 0.10
-    elif Mth in [Apr,May,Jun]:
-        FrcPct = 0.15
-    elif Mth in [Jul,Aug,Sep]:
-        FrcPct = 0.20
-    elif Mth in [Oct,Nov,Dec]:
-        FrcPct = 0.25
-    else:
-        return none
-    return CSales* (1*FrcPct)
-while True:
-  
-    #start sequence
-    FstQst = input()
+# 2-27-26
+#compute Forecast Sales based on the percents given by the months below
+FORECAST_PERCENT = {
+    "jan": 0.10, "feb": 0.10, "mar": 0.10,
+    "apr": 0.15, "may": 0.15, "jun": 0.15,
+    "jul": 0.20, "aug": 0.20, "sep": 0.20,
+    "oct": 0.25, "nov": 0.25, "dec": 0.25
+}
+def Comp_FcSales(month: str, sales: float) -> float:
+    """
+    Compute next month's sales forecast.
+    :param month: Month name (string)
+    :param sales: Current month's sales (float)
+    :return: Forecasted sales for next month (float)
+    """
+    month_key = month.strip().lower()[:3]  # Normalize to 3-letter lowercase
+    if month_key not in FORECAST_PERCENT:
+        raise ValueError(f"Invalid month: {month}")
     
-    FstQst = float.lower()
-    
-    if FstQst == "yes":
-       
-        #input
-        LstNme = input("Enter your last name: ")
-        Mth = input("Enter Month of sales")
-        MSales = float(input("Enter this month's sales"))
-        #Process
-        ForeCast = NMthSales(Mth,CSales)
-        #output
-        print("Forecast for next month: ", ForeCast)
-    elif FstQst == "no":
-        print("understood, have a nice day!")
-        break
-    else:
-        print ("Invalid Input, enter yes or no")
-    
+    forecast_percent = FORECAST_PERCENT[month_key]
+    return sales * (1 + forecast_percent)
+def main():
+    while True:
+        #start sequence
+        FstQst = input("Do you want to use the program? (Yes or No): ")
+        
+        FstQst = FstQst.lower()
+        
+        if FstQst == "yes":
+           
+            #input
+            LstNme = input("Enter your last name: ")
+            Mth = (input("Enter Month of sales: "))
+            CSales = float(input("Enter this month's sales: "))
+            #Process
+            ForeCast = Comp_FcSales(Mth,CSales)
+            #output
+            print(f"{LstNme}'s forcast for next month: ", ForeCast)
+        elif FstQst == "no":
+            print("understood, have a nice day!")
+            break
+        else:
+            print ("Invalid Input, enter yes or no")
+if __name__ == "__main__":
+    main()    
