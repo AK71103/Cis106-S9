@@ -1,0 +1,54 @@
+#PS9P3
+#Alexander Kazantzis
+# 2-27-26
+def CalcDoorPrc(CarMke,CarMdl,ElVCde,CarMSRP):
+    Make_Model = f"{CarMke}{CarMdl}"
+    #Calculate the Out of Door Price, based on the make,model, and whether or not it's electric, plus a 7% sales tax
+    if ElVCde == 'yes':
+        DsctPct = 0.30
+    elif Make_Model == "Honda Accord":
+        DsctPct = 0.10
+    elif Make_Model == "Toyota Rav4":
+        DsctPct = 0.15
+    else:
+        DsctPct = 0.05
+    # calculate Prices
+    DscntAmnt = CarMSRP * DsctPct
+    NewMSRP = CarMSRP - DscntAmnt
+    SaleTax = NewMSRP *0.07 # 7% sales tax
+    TotPrice = NewMSRP + SaleTax
+    return TotPrice,CarMSRP
+def main():
+    #Main sequence
+    TotMSRP = 0
+    TotSales = 0
+    while True:
+        #start sequence
+        FstQst = input("Do you want to use the program? (Yes or No): ")
+        FstQst = FstQst.lower()
+        if FstQst == "yes":
+            try:
+                CarMke = (input("Enter Car Make: "))
+                CarMdl =  (input("Enter Car Model: "))
+                ElVCde = (input("Enter Eletrical Vehicle Code (Yes or No): "))
+                CarMSRP = float(input("Enter Car's MSRP: "))
+            except ValueError:
+                print("Invalid MSRP, Please enter a Numeric Value")
+                continue
+            #Calculate the Out of Door Price
+            DoorPrc,OgMsrp = CalcDoorPrc(CarMke,CarMdl,ElVCde,CarMSRP)
+            #Sum DoorPrc& MSRP
+            TotSales += DoorPrc
+            TotMSRP += OgMsrp
+            #output
+            print("Out the Door Price",DoorPrc)
+            print("Sum of Out the Door Prices",TotSales)
+            print("Sum of MSRPs",TotMSRP)
+        #End of Yes
+        elif FstQst == "no":
+            print("understood, have a nice day!")
+            break
+        else:
+            print ("Invalid Input, enter yes or no")
+if __name__ == "__main__":
+    main()    
