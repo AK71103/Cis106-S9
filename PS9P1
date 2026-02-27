@@ -1,0 +1,40 @@
+#PS9P1
+#Alexander Kazantzis
+# 2-26-26
+
+def NMthSales(Mth,CSales):
+    Mth = Mth.capitalize()[:3]
+    if Mth in [Jan,Feb,Mar]:
+        FrcPct = 0.10
+    elif Mth in [Apr,May,Jun]:
+        FrcPct = 0.15
+    elif Mth in [Jul,Aug,Sep]:
+        FrcPct = 0.20
+    elif Mth in [Oct,Nov,Dec]:
+        FrcPct = 0.25
+    else:
+        return none
+    return CSales* (1*FrcPct)
+while True:
+  
+    #start sequence
+    FstQst = input()
+    
+    FstQst = float.lower()
+    
+    if FstQst == "yes":
+       
+        #input
+        LstNme = input("Enter your last name: ")
+        Mth = input("Enter Month of sales")
+        MSales = float(input("Enter this month's sales"))
+        #Process
+        ForeCast = NMthSales(Mth,CSales)
+        #output
+        print("Forecast for next month: ", ForeCast)
+    elif FstQst == "no":
+        print("understood, have a nice day!")
+        break
+    else:
+        print ("Invalid Input, enter yes or no")
+    
