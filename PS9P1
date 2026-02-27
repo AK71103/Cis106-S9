@@ -8,19 +8,21 @@ FORECAST_PERCENT = {
     "jul": 0.20, "aug": 0.20, "sep": 0.20,
     "oct": 0.25, "nov": 0.25, "dec": 0.25
 }
-def Comp_FcSales(month: str, sales: float) -> float:
+
+def Comp_FcSales(Mth: str, sales: float) -> float:
     """
     Compute next month's sales forecast.
     :param month: Month name (string)
     :param sales: Current month's sales (float)
     :return: Forecasted sales for next month (float)
     """
-    month_key = month.strip().lower()[:3]  # Normalize to 3-letter lowercase
+    month_key = Mth.strip().lower()[:3]  # Normalize to 3-letter lowercase
     if month_key not in FORECAST_PERCENT:
-        raise ValueError(f"Invalid month: {month}")
+        raise ValueError(f"Invalid month: {Mth}")
     
     forecast_percent = FORECAST_PERCENT[month_key]
     return sales * (1 + forecast_percent)
+    
 def main():
     while True:
         #start sequence
@@ -43,5 +45,6 @@ def main():
             break
         else:
             print ("Invalid Input, enter yes or no")
+            
 if __name__ == "__main__":
     main()    
