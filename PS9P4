@@ -1,0 +1,45 @@
+#PS9P4
+#Alexander Kazantzis
+# 2-28-26
+def CompTckPrc(MilesDT):
+    #Ticket prices based on how far away from Downtown you are.
+    if MilesDT >=30:
+        return 12
+    elif 29>=MilesDT>=20:
+        return 10
+    elif 19>=MilesDT>=10:
+        return 8
+    else:
+        return 5
+    
+def main():
+    #Main sequence
+    TckPrcSum = 0 # Sum of all the tickets
+    while True:
+        #start sequence
+        FstQst = input("Do you want to use the program? (Yes or No): ")
+        FstQst = FstQst.lower()
+        if FstQst == "yes":
+           LstNme = input("Enter your Last Name: ")
+           try:
+               MilesDT = float(input("Enter Miles to Downtown Chicago: "))
+               if MilesDT < 0:
+                   print("Miles can't be negative!")
+           except ValueError:
+               print("Invalid input, please put a number")
+               continue
+           #compute the ticket Price
+           FinPri = CompTckPrc(MilesDT) #Final Price
+           
+           TckPrcSum += FinPri
+           
+           print(f"Passenger: {LstNme}, Miles: {MilesDT}, Ticket Price: ${FinPri}")
+           print(f"\nSum Total of all tickets: ${TckPrcSum}")
+        #End of Yes
+        elif FstQst == "no":
+            print("understood, have a nice day!")
+            break
+        else:
+            print ("Invalid Input, enter yes or no")
+if __name__ == "__main__":
+    main()    
