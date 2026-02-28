@@ -1,0 +1,62 @@
+#PS9P5
+#Alexander Kazantzis
+# 2-28-26
+def CompAssdVal(County, MrktVal):
+    # Assessed Value percents based on Illinois counties.
+    AssdPct = {
+        "cook": 0.90,
+        "dupage": 0.80,
+        "mchenry": 0.75,
+        "kane": 0.60 
+    }
+    
+    # Assessed Value Percent
+    AssdValPct = AssdPct.get(County.lower(),0.70)
+    return MrktVal * AssdValPct
+
+def main():
+    #Main sequence
+    MrktValSum = 0.0
+    AssdValSum = 0.0
+    
+    while True:
+        #start sequence
+        FstQst = input("Do you want to use the program? (Yes or No): ")
+        FstQst = FstQst.lower()
+        if FstQst == "yes":
+            #Get the county Name 
+            County = input("Enter the County of the Relevant house: ").strip()
+            if not County:
+                print("County name cannot be empty.")
+                continue
+            try:
+                MrktVal = float(input("Enter the house's Market Value: ").strip())
+                if MrktVal < 0:
+                    print("The Market value can't be negative!")
+            except ValueError:
+                print("Invalid input, please put a number")    
+                continue
+            
+            #Compute the Assessed Value 
+            AssdVal = CompAssdVal(County,MrktVal)
+            
+            #Update the Sums
+            MrktValSum += MrktVal
+            AssdValSum += AssdVal
+            
+            #Entry Results
+            print(f"County: {County.title()}, Market Value: ${MrktVal},"
+                f"Assessed Value: ${AssdVal}")
+           
+            #Summary Results
+            print("\n--- In Total ---")
+            print(f"Sum of Market Values: ${MrktValSum}")
+            print(f"Sum of Assessed Values: ${AssdValSum}")
+        #End of Yes
+        elif FstQst == "no":
+            print("understood, have a nice day!")
+            break
+        else:
+            print ("Invalid Input, enter yes or no")
+if __name__ == "__main__":
+    main()    
